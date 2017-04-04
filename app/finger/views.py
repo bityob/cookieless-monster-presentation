@@ -32,7 +32,9 @@ def find_username_from_details(request):
     result = None
     for user in UserData.objects.all():
         temp_percent = similar(user.details, details)
-        if temp_percent > max_percent:
+        if temp_percent > max_percent and temp_percent > 0.8:
             result = user
-
-    return Response(result.username)
+    if result:
+        return Response(result.username)
+    else:
+        return Response("Can not find a proper match.")
