@@ -26,7 +26,7 @@ SECRET_KEY = '4!*y98kb-cxsdp5dqjh+-^6vvt!&uhd_5df^2g$e1^#76#uw+='
 DEBUG = True
 
 ALLOWED_HOSTS = ["http://localhost:8000", "localhost:8000",
-                 "http://localhost:9000", "localhost:9000"]
+                 "http://localhost:9000", "localhost:9000", "localhost"]
 
 
 # Application definition
@@ -39,11 +39,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'finger',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -98,6 +100,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
