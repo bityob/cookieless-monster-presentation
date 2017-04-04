@@ -26,7 +26,7 @@ SECRET_KEY = '4!*y98kb-cxsdp5dqjh+-^6vvt!&uhd_5df^2g$e1^#76#uw+='
 DEBUG = True
 
 ALLOWED_HOSTS = ["http://localhost:8000", "localhost:8000",
-                 "http://localhost:9000", "localhost:9000", "localhost"]
+                 "http://localhost:9000", "localhost:9000", "localhost", "finger-bityob.c9users.io"]
 
 
 # Application definition
