@@ -6,29 +6,21 @@ $( document ).ready(function() {
       $.ajax({ 
         url: "http://localhost:9000/get_user?hash=" + result + "&details=test", 
         type: "GET",
-        dataType : "json",
       })
         .done(function(response) {
             console.log(response)
 
             if (response == "אין מספיק התאמה") {
                 // Create new user...
-                $.ajax({ 
-                    url: "http://localhost:9000/get_user?hash=" + result + "&details=test", 
-                    type: "GET",
-                    dataType : "json",
-                })
-                .done(function(response) {
-                    console.log(response)
-                });
-        })
-       .fail(function( xhr, status, errorThrown ) {
-            console.log( "Error: " + errorThrown );
-            console.log( "Status: " + status );
-            console.dir( xhr );
-      });  
-            }
-            console.log(response)
+                // $.ajax({ 
+                //     url: "http://localhost:9000/get_user?hash=" + result + "&details=test", 
+                //     type: "GET",
+                //     dataType : "json",
+                // })
+                // .done(function(response) {
+                //     console.log(response)
+                // });
+            };
         })
        .fail(function( xhr, status, errorThrown ) {
             console.log( "Error: " + errorThrown );
