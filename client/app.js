@@ -15,7 +15,7 @@ $( document ).ready(function() {
   fp.get(function(result, components) {
       components_flat = joinobj(components);
       $.ajax({ 
-        url: "http://localhost:8081/get_user?hash=" + result + "&details=" + components_flat, 
+        url: "https://localhost:8081/get_user?hash=" + result + "&details=" + components_flat, 
         type: "GET",
       })
       .done(function(response) {
@@ -63,7 +63,7 @@ $( document ).ready(function() {
           // $("#fp").text(result);
           // $("#time").text(timeString);
           $.ajax({ 
-            url: "http://localhost:8081/userdata/",
+            url: "https://localhost:8081/userdata/",
             type: "POST",
             data: {
               "username" : $('#usernameinput').val(),
