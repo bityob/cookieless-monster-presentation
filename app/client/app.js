@@ -14,15 +14,9 @@ $( document ).ready(function() {
 
   fp.get(function(result, components) {
       components_flat = joinobj(components);
-      if (location.protocol == 'https:') 
-      {
-        var protocol = "https://";
-      } else {
-        var protocol = "http://";
-      }
 
       $.ajax({ 
-        url: protocol + "localhost:8081/get_user",
+        url: "/get_user/",
         type: "POST",
         data: JSON.stringify({"hash" : result, "details" : components_flat}),
         contentType: "application/json",
@@ -72,14 +66,8 @@ $( document ).ready(function() {
           // $("#fp").text(result);
           // $("#time").text(timeString);
 
-          if (location.protocol == 'https:') {
-            var protocol = "https://";
-          } else {
-            var protocol = "http://";
-          }
-
           $.ajax({ 
-            url: protocol + "localhost:8081/userdata/",
+            url: "/userdata/",
             type: "POST",
             data: JSON.stringify({
               "username" : $('#usernameinput').val(),
