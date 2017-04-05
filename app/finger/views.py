@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from finger.models import UserData
 from finger.serializer import UserDataSerializer
+import json
 
 MASTER_KEY = "kinglavi"
 
@@ -19,10 +20,16 @@ class UserDataView(viewsets.ModelViewSet):
     queryset = UserData.objects.all()
 
 
-@api_view(['GET'])
+# @api_view(['GET'])
+@api_view(['POST'])
 def find_username_from_details(request):
-    user_hash = request.query_params.get('hash')
-    details = request.query_params.get('details')
+    body = json.loads(request.body)
+    # return Response(str(request.body))
+
+    # user_hash = request.query_params.get('hash')
+    user_hash = body.get('hash')
+    # details = request.query_params.get('details')
+    details = body.get('details')
     try:
         user = UserData.objects.get(user_hash=user_hash)
         return Response(user.username)

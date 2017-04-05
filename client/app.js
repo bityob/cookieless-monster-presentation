@@ -14,9 +14,18 @@ $( document ).ready(function() {
 
   fp.get(function(result, components) {
       components_flat = joinobj(components);
+      if (location.protocol == 'https:') 
+      {
+        var protocol = "https://";
+      } else {
+        var protocol = "http://";
+      }
+
       $.ajax({ 
-        url: "https://localhost:8081/get_user?hash=" + result + "&details=" + components_flat, 
-        type: "GET",
+        url: protocol + "localhost:8081/get_user",
+        type: "POST",
+        data: JSON.stringify({"hash" : result, "details" : components_flat}),
+        contentType: "application/json",
       })
       .done(function(response) {
           console.log(response)
@@ -62,17 +71,29 @@ $( document ).ready(function() {
           // $("#details").html(details);
           // $("#fp").text(result);
           // $("#time").text(timeString);
+
+          if (location.protocol == 'https:') {
+            var protocol = "https://";
+          } else {
+            var protocol = "http://";
+          }
+
           $.ajax({ 
-            url: "https://localhost:8081/userdata/",
+            url: protocol + "localhost:8081/userdata/",
             type: "POST",
-            data: {
+            data: JSON.stringify({
               "username" : $('#usernameinput').val(),
               "details" : joinobj(components),
               "user_hash" : result,
-            }
+            }),
+            contentType: "application/json",
           })
           .done(function(response) {
               console.log(response);
+
+              $("#newuser").slideUp();
+              $("#knownusername").text(response.username);
+              $("#knownuser").slideDown();
           })
          .fail(function( xhr, status, errorThrown ) {
               console.log( "Error: " + errorThrown );
@@ -80,6 +101,9 @@ $( document ).ready(function() {
               console.dir( xhr );
           });  
         });
-      });
+
+        // Dont follow submit link
+        return false;
+  });
 
 });
