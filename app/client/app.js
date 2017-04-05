@@ -30,7 +30,8 @@ $( document ).ready(function() {
               $('#newuser').show();
           }
           else {
-              $('#knownusername').text(response);
+              $('#knownusername').text(response.username);
+              $('#fp').text(response.user_hash);
               $('#knownuser').show();
           }
 

@@ -32,7 +32,7 @@ def find_username_from_details(request):
     details = body.get('details')
     try:
         user = UserData.objects.get(user_hash=user_hash)
-        return Response(user.username)
+        return Response({"user_hash" : user.user_hash, "username": user.username})
     except Exception as e:
         pass
     max_percent = 0.0
@@ -42,7 +42,7 @@ def find_username_from_details(request):
         if temp_percent > max_percent and temp_percent > 0.8:
             result = user
     if result:
-        return Response(result.username)
+        return Response({"user_hash" : user.user_hash, "username": user.username})
     else:
         return Response("Can not find a proper match.")
 
