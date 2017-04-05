@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
-from finger.views import UserDataView, find_username_from_details
+from finger.views import UserDataView, find_username_from_details, find_allusers
 
 router = routers.SimpleRouter()
 router.register(r'userdata', UserDataView)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'get_user', find_username_from_details)
+    url(r'get_user', find_username_from_details),
+    url(r'getusers', find_allusers),
 ]
 
 urlpatterns += router.urls

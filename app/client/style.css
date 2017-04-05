@@ -47,7 +47,7 @@ input {
 	display: block;
 	margin: 10px 0px 10px 0px;
 }
-#newuser, #knownuser {
+#newuser, #knownuser, #allusers {
 	display: none;
 } 
 

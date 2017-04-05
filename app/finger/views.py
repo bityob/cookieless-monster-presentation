@@ -45,3 +45,14 @@ def find_username_from_details(request):
         return Response(result.username)
     else:
         return Response("Can not find a proper match.")
+
+@api_view(['GET'])
+def find_allusers(request):
+    try:
+        users = {}
+        for user in UserData.objects.all():
+            users[user.user_hash] = user.username
+        return Response(users)
+    except Exception as e:
+        return Response(str(e))
+    

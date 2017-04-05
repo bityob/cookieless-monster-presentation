@@ -80,6 +80,7 @@ $( document ).ready(function() {
               console.log(response);
 
               $("#newuser").slideUp();
+              $('#fp').text(response.user_hash);
               $("#knownusername").text(response.username);
               $("#knownuser").slideDown();
           })
